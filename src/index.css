@@ -1,0 +1,341 @@
+/* ──────────────────────────────────────────────
+ *  CSS — Eventually Consistent Form
+ * ────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #0f1117;
+  color: #e1e4ea;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 680px;
+  margin: 3rem auto;
+  padding: 0 1.25rem;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: #8b90a0;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+/* ── Form ───────────────────────────────────── */
+
+.form {
+  background: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.form h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.form label {
+  font-size: 0.8rem;
+  color: #8b90a0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form input {
+  padding: 0.6rem 0.75rem;
+  background: #12141c;
+  border: 1px solid #2a2d3a;
+  border-radius: 6px;
+  color: #e1e4ea;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form input:focus {
+  border-color: #6366f1;
+}
+
+.form button {
+  margin-top: 0.5rem;
+  padding: 0.65rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-error {
+  color: #f87171;
+  font-size: 0.85rem;
+}
+
+/* ── Submissions Section ────────────────────── */
+
+.submissions h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.empty {
+  color: #555a6e;
+  font-size: 0.9rem;
+}
+
+/* ── Card List ──────────────────────────────── */
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card {
+  background: #1a1d27;
+  border: 1px solid #2a2d3a;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  animation: cardIn 0.3s ease-out;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card--pending {
+  border-left: 3px solid #facc15;
+}
+
+.card--retrying {
+  border-left: 3px solid #fb923c;
+}
+
+.card--success {
+  border-left: 3px solid #4ade80;
+}
+
+.card--failed {
+  border-left: 3px solid #f87171;
+}
+
+/* Card Header */
+.card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.card__icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.card__icon--pending {
+  background: rgba(250, 204, 21, 0.15);
+  color: #facc15;
+}
+
+.card__icon--retrying {
+  background: rgba(251, 146, 60, 0.15);
+  color: #fb923c;
+}
+
+.card__icon--success {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+}
+
+.card__icon--failed {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+}
+
+.card__status {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card--pending .card__status {
+  color: #facc15;
+}
+
+.card--retrying .card__status {
+  color: #fb923c;
+}
+
+.card--success .card__status {
+  color: #4ade80;
+}
+
+.card--failed .card__status {
+  color: #f87171;
+}
+
+.card__time {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: #555a6e;
+}
+
+/* Card Body */
+.card__body {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.card__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__field-label {
+  font-size: 0.7rem;
+  color: #6b70a0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card__field-value {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ── Progress Dots ──────────────────────────── */
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.progress__step {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+}
+
+.progress__step:last-child {
+  flex: 0;
+}
+
+.progress__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2a2d3a;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.progress__dot--pending {
+  background: #facc15;
+}
+
+.progress__dot--retrying {
+  background: #fb923c;
+}
+
+.progress__dot--success {
+  background: #4ade80;
+}
+
+.progress__dot--failed {
+  background: #f87171;
+}
+
+.progress__dot--pulse {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
+}
+
+.progress__label {
+  font-size: 0.65rem;
+  color: #555a6e;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  white-space: nowrap;
+}
+
+.progress__line {
+  flex: 1;
+  height: 2px;
+  background: #2a2d3a;
+  transition: background 0.3s;
+}
+
+.progress__line--pending {
+  background: #facc15;
+}
+
+.progress__line--retrying {
+  background: #fb923c;
+}
+
+.progress__line--success {
+  background: #4ade80;
+}
+
+.progress__line--failed {
+  background: #f87171;
+}
